@@ -6,6 +6,7 @@ variables:
 
 stages:
 - stage: 'Build'
+
   displayName: 'Build the web application'
   jobs: 
   - job: 'Build' 
@@ -64,7 +65,8 @@ stages:
 
     - publish: '$(Build.ArtifactStagingDirectory)'
       artifact: drop
-      - stage: 'Deploy'
+
+- stage: 'Deploy'
   displayName: 'Deploy the web application'
   dependsOn: Build
   jobs:
@@ -86,4 +88,3 @@ stages:
               azureSubscription: 'Resource Manager - Tailspin - Space Game'
               appName: '$(WebAppName)'
               package: '$(Pipeline.Workspace)/drop/$(buildConfiguration)/*.zip'
-      
